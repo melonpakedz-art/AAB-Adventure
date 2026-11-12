@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080e18"><title>Portal AAB — Login & Dashboard</title>
+<style>
+:root{--bg:#080e18;--panel:#111d2d;--panel2:#17263a;--gold:#e9bd65;--gold2:#ffe1a0;--text:#f6f2e9;--muted:#aeb9c9;--line:rgba(233,189,101,.22);--green:#78c7a2;--red:#e58b83}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#1c2b3d 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.6 Inter,Segoe UI,Arial,sans-serif;min-height:100vh}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{width:min(1180px,92%);margin:auto}.top{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-size:27px;font-weight:950;letter-spacing:-2px;color:var(--gold)}.brand span{color:white}.top small{font-size:9px;letter-spacing:2px;color:var(--muted);margin-left:8px}.top a.back{font-size:11px;color:var(--gold);border:1px solid var(--line);border-radius:30px;padding:9px 14px}
+main{padding:42px 0 80px}.eyebrow{font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:900}.heading{margin:0 0 24px}.heading h1{font-size:clamp(34px,6vw,58px);line-height:1;letter-spacing:-.06em;margin:12px 0}.muted{color:var(--muted)}
+.login-shell{max-width:490px;margin:45px auto;background:linear-gradient(145deg,#17263a,#0d1726);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,5vw,42px);box-shadow:0 28px 90px #0007}.crest{width:72px;height:72px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-weight:950;font-size:25px;margin-bottom:25px;box-shadow:0 0 0 6px #e9bd6510}.login-shell h1{font-size:34px;line-height:1.05;margin:9px 0}.field{display:grid;gap:7px;margin:17px 0}.field label{font-size:10px;letter-spacing:1.5px;color:var(--gold);font-weight:800}.field input,.field select,.field textarea{width:100%;border:1px solid #34465d;border-radius:9px;background:#091422;color:white;padding:13px 14px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}.btn{border:1px solid var(--gold);border-radius:99px;padding:12px 18px;background:var(--gold);color:#101722;font-size:11px;font-weight:950;letter-spacing:1px}.btn.secondary{background:transparent;color:var(--gold)}.btn.danger{background:transparent;color:var(--red);border-color:#9d514d}.btn:disabled{opacity:.5;cursor:not-allowed}.full{width:100%;margin-top:9px}.hint{font-size:11px;color:var(--muted);margin-top:18px}.alert{padding:12px 14px;border:1px solid #9d514d;background:#9d514d18;color:#ffd0ca;border-radius:9px;font-size:12px;margin:15px 0}.alert.ok{border-color:#438b70;background:#438b7018;color:#b9f0d8}
+.hidden{display:none!important}.dashboard-head{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:28px}.dashboard-head h1{font-size:clamp(30px,5vw,48px);margin:8px 0;letter-spacing:-.05em}.role{display:inline-block;padding:5px 10px;border:1px solid var(--line);border-radius:30px;color:var(--gold);font-size:9px;letter-spacing:1.5px;font-weight:900}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}.stat,.panel{background:linear-gradient(145deg,#17263a,#101a29);border:1px solid var(--line);border-radius:13px;padding:20px}.stat small{color:var(--muted);font-size:9px;letter-spacing:1.4px}.stat strong{display:block;font-size:clamp(22px,3vw,34px);color:var(--gold);margin-top:7px;overflow-wrap:anywhere}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel h2{font-size:20px;margin:0 0 5px}.panel>p{font-size:12px;color:var(--muted);margin:0 0 16px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px;min-width:470px}th,td{text-align:left;padding:12px 9px;border-bottom:1px solid #ffffff12}th{color:var(--gold);font-size:9px;letter-spacing:1px}td{color:#e5eaf1}.positive{color:var(--green)}.negative{color:var(--red)}.empty{padding:18px;border:1px dashed #40516a;border-radius:8px;color:var(--muted);font-size:12px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.wide{grid-column:1/-1}.section-title{margin:34px 0 13px;font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:900}.member-list{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.member-chip{padding:14px;background:#0b1625;border:1px solid var(--line);border-radius:10px}.member-chip small{font-size:9px;color:var(--muted)}.member-chip strong{display:block;color:var(--gold);font-size:17px;margin-top:4px}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:10px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}.member-list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr}.wide{grid-column:auto}.stats{gap:8px}.stat{padding:14px}.stat strong{font-size:22px}}
+</style>
+</head>
+<body>
+<header class="top wrap">
+  <a class="brand" href="index.html">A<span>A</span>B<small>SECURE PORTAL</small></a>
+  <a class="back" href="index.html">← WEBSITE UTAMA</a>
+</header>
+<main class="wrap">
+  <section id="loginView" class="login-shell">
+    <div class="crest">AAB</div><div class="eyebrow">PRIVATE MEMBERS AREA</div>
+    <h1>Selamat datang<br>di Portal AAB.</h1>
+    <p class="muted">Masuk dengan username AAB (superadmin (atau bosbesar) atau abang1–abang7) dan password awal yang diberikan pengelola. Setiap Abang 1–7 adalah admin dengan tabungan pribadi.</p>
+    <div id="loginMessage" aria-live="polite"></div>
+    <form id="loginForm">
+      <div class="field"><label for="username">USERNAME</label><input id="username" autocomplete="username" required placeholder="Contoh: abang1"></div>
+      <div class="field"><label for="password">PASSWORD</label><input id="password" type="password" autocomplete="current-password" required placeholder="Masukkan password"></div>
+      <button class="btn full" id="loginButton" type="submit">MASUK KE DASHBOARD ↗</button>
+    </form>
+    <p class="hint">Akun bersifat pribadi. Jangan membagikan password kepada anggota lain.</p>
+  </section>
+
+  <section id="dashboardView" class="hidden">
+    <div class="dashboard-head">
+      <div><div class="eyebrow">AAB PRIVATE DASHBOARD</div><h1 id="welcome">Dashboard</h1><span class="role" id="roleLabel">MEMBER</span></div>
+      <button class="btn secondary" id="logoutButton">KELUAR ↗</button>
+    </div>
+    <div id="dashboardMessage" aria-live="polite"></div>
+    <div class="stats" id="stats"></div>
+    <section id="adminArea" class="hidden">
+      <div class="section-title">PUSAT KENDALI KEUANGAN AAB</div>
+      <div class="grid">
+        <div class="panel">
+          <h2>Catat keuangan organisasi</h2><p>Pemasukan dan pengeluaran kas bersama AAB.</p>
+          <form id="orgForm">
+            <div class="form-grid">
+              <div class="field"><label>JENIS TRANSAKSI</label><select id="orgType"><option value="pemasukan">Pemasukan</option><option value="pengeluaran">Pengeluaran</option></select></div>
+              <div class="field"><label>TANGGAL</label><input id="orgDate" type="date" required></div>
+              <div class="field"><label>NOMINAL (RP)</label><input id="orgAmount" type="number" min="1" step="1" required placeholder="100000"></div>
+              <div class="field"><label>KATEGORI</label><input id="orgCategory" maxlength="60" required placeholder="Iuran, konsumsi, dll."></div>
+              <div class="field wide"><label>KETERANGAN</label><input id="orgNote" maxlength="180" placeholder="Keterangan transaksi"></div>
+            </div><button class="btn" type="submit">SIMPAN TRANSAKSI</button>
+          </form>
+        </div>
+        <div class="panel">
+          <h2>Catat tabungan anggota</h2><p>Admin mencatat setoran atau penarikan milik anggota.</p>
+          <form id="savingForm">
+            <div class="form-grid">
+              <div class="field"><label>ANGGOTA</label><select id="savingMember"></select></div>
+              <div class="field"><label>JENIS</label><select id="savingType"><option value="setoran">Setoran</option><option value="penarikan">Penarikan</option></select></div>
+              <div class="field"><label>NOMINAL (RP)</label><input id="savingAmount" type="number" min="1" step="1" required placeholder="50000"></div>
+              <div class="field"><label>TANGGAL</label><input id="savingDate" type="date" required></div>
+              <div class="field wide"><label>KETERANGAN</label><input id="savingNote" maxlength="180" placeholder="Catatan tabungan"></div>
+            </div><button class="btn" type="submit">SIMPAN TABUNGAN</button>
+          </form>
+        </div>
+      </div>
+      <div class="section-title">RINGKASAN TABUNGAN 7 ANGGOTA</div>
+      <div class="member-list" id="memberBalances"></div>
+      <div class="section-title">RIWAYAT KEUANGAN ORGANISASI</div>
+      <div class="panel"><div class="table-wrap" id="orgTable"></div></div>
+    </section>
+    <section>
+      <div class="section-title" id="savingTitle">TABUNGAN SAYA</div>
+      <div class="panel"><h2 id="savingHeading">Riwayat tabungan</h2><p>Data yang ditampilkan hanya sesuai hak akses akun yang sedang masuk.</p><div class="table-wrap" id="savingTable"></div></div>
+    </section>
+  </section>
+</main>
+<footer><div class="wrap">© <span id="year"></span> AAB · PRIVATE FINANCIAL AREA · DATA DILINDUNGI DENGAN ROW LEVEL SECURITY</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onerror="(function(){var s=document.createElement('script');s.src='https://unpkg.com/@supabase/supabase-js@2';s.onload=function(){window.dispatchEvent(new Event('supabase-ready'));};s.onerror=function(){window.dispatchEvent(new Event('supabase-load-failed'));};document.head.appendChild(s);})()"></script>
+<script>
+/*
+  KONFIGURASI WAJIB:
+  1. Buat project Supabase.
+  2. Isi URL project dan anon/publishable key di bawah.
+  3. Jalankan supabase-setup.sql di SQL Editor.
+  4. Buat akun Auth dan profil sesuai panduan README.
+  Jangan pernah menaruh service_role key di file ini.
+*/
+const SUPABASE_URL = "https://pgrxxfamzdiyqwnyfxgf.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_rjdzL-0E03iJhNHTmAx_0w_wgGa0c7F";
+// Harus sama dengan email Auth yang UID-nya terhubung ke profil super_admin.
+const SUPER_ADMIN_EMAIL = "jakseldoraemon@gmail.com";
+const MEMBERS = ["Abang 1","Abang 2","Abang 3","Abang 4","Abang 5","Abang 6","Abang 7"];
+const $ = id => document.getElementById(id);
+const rupiah = n => new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(Number(n||0));
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const today = () => {const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;};
+$("year").textContent=new Date().getFullYear();
+$("orgDate").value=today();$("savingDate").value=today();
+let supabase=null, currentUser=null, currentProfile=null;
+function message(target,text,ok=false){$(target).innerHTML=text?`<div class="alert ${ok?"ok":""}">${esc(text)}</div>`:"";}
+function showLogin(){ $("loginView").classList.remove("hidden");$("dashboardView").classList.add("hidden"); }
+function showDashboard(){ $("loginView").classList.add("hidden");$("dashboardView").classList.remove("hidden"); }
+function tableHTML(rows,admin=false){
+ if(!rows.length)return '<div class="empty">Belum ada transaksi yang tercatat.</div>';
+ return `<table><thead><tr>${admin?'<th>ANGGOTA</th>':''}<th>TANGGAL</th><th>JENIS</th><th>KETERANGAN</th><th>NOMINAL</th></tr></thead><tbody>${rows.map(r=>`<tr>${admin?`<td>${esc(r.member_name||"AAB")}</td>`:""}<td>${esc(r.transaction_date)}</td><td>${esc(r.type)}</td><td>${esc(r.description||r.category||"-")}</td><td class="${["pemasukan","setoran"].includes(r.type)?"positive":"negative"}">${rupiah(r.amount)}</td></tr>`).join("")}</tbody></table>`;
+}
+async function loadDashboard(){
+ const {data:profile,error:pErr}=await supabase.from("profiles").select("id,username,display_name,role").eq("id",currentUser.id).single();
+ if(pErr||!profile){throw new Error("Profil akun belum dibuat. Hubungi BOS BESAR / admin.");}
+ currentProfile=profile;
+ const superAdmin=profile.role==="super_admin";
+ const admin=["admin","super_admin"].includes(profile.role);
+ $("welcome").textContent=`Selamat datang, ${profile.display_name||profile.username}`;
+ $("roleLabel").textContent=superAdmin?"BOS BESAR / SUPER ADMIN":"ADMIN AAB";
+ $("adminArea").classList.toggle("hidden",!admin);
+ const {data:savings,error:sErr}=await supabase.from("savings_transactions").select("id,member_id,type,amount,description,transaction_date").order("transaction_date",{ascending:false}).limit(250);
+ if(sErr)throw sErr;
+ const own=superAdmin?savings:(savings||[]).filter(x=>x.member_id===profile.id);
+ const saved=own.reduce((sum,r)=>sum+(r.type==="setoran"?Number(r.amount):-Number(r.amount)),0);
+ let orgIncome=0,orgExpense=0,orgRows=[];
+ if(admin){
+  const {data:org,error:oErr}=await supabase.from("org_transactions").select("*").order("transaction_date",{ascending:false}).limit(250);
+  if(oErr)throw oErr;orgRows=org||[];
+  orgIncome=orgRows.filter(x=>x.type==="pemasukan").reduce((a,x)=>a+Number(x.amount),0);
+  orgExpense=orgRows.filter(x=>x.type==="pengeluaran").reduce((a,x)=>a+Number(x.amount),0);
+  $("stats").innerHTML=`<div class="stat"><small>KAS ORGANISASI</small><strong>${rupiah(orgIncome-orgExpense)}</strong></div><div class="stat"><small>TOTAL PEMASUKAN</small><strong>${rupiah(orgIncome)}</strong></div><div class="stat"><small>TOTAL PENGELUARAN</small><strong>${rupiah(orgExpense)}</strong></div>`;
+  $("orgTable").innerHTML=tableHTML(orgRows.map(x=>({...x,member_name:"AAB"})));
+  let profiles=[];
+  if(superAdmin){
+   const {data:allProfiles,error:prErr}=await supabase.from("profiles").select("id,username,display_name").eq("role","admin").order("username");
+   if(prErr)throw prErr;profiles=allProfiles||[];
+   $("memberBalances").classList.remove("hidden");
+   const balanceMap=new Map(profiles.map(m=>[m.id,{name:m.display_name||m.username,balance:0}]));
+   (savings||[]).forEach(r=>{if(balanceMap.has(r.member_id)){let b=balanceMap.get(r.member_id);b.balance+=r.type==="setoran"?Number(r.amount):-Number(r.amount);}});
+   $("memberBalances").innerHTML=[...balanceMap.values()].map((m,i)=>`<div class="member-chip"><small>ADMIN 0${i+1}</small><strong>${esc(m.name)}</strong><span>${rupiah(m.balance)}</span></div>`).join("");
+   const nameMap=new Map(profiles.map(m=>[m.id,m.display_name||m.username]));
+   $("savingTitle").textContent="SELURUH RIWAYAT TABUNGAN";$("savingHeading").textContent="Tabungan seluruh admin";
+   $("savingTable").innerHTML=tableHTML((savings||[]).map(r=>({...r,member_name:nameMap.get(r.member_id)||"Admin"})),true);
+  }else{
+   profiles=[profile];
+   $("memberBalances").classList.add("hidden");
+   $("savingTitle").textContent="TABUNGAN SAYA";$("savingHeading").textContent=`Riwayat ${profile.display_name||profile.username}`;
+   $("savingTable").innerHTML=tableHTML(own);
+  }
+  $("savingMember").innerHTML=profiles.map(m=>`<option value="${esc(m.id)}">${esc(m.display_name||m.username)}</option>`).join("");
+  if(!superAdmin){$("savingMember").disabled=true;$("savingMember").value=profile.id;}
+  else{$("savingMember").disabled=false;}
+ }else{
+  $("stats").innerHTML=`<div class="stat"><small>TABUNGAN SAYA</small><strong>${rupiah(saved)}</strong></div><div class="stat"><small>JUMLAH SETORAN</small><strong>${rupiah(own.filter(x=>x.type==="setoran").reduce((a,x)=>a+Number(x.amount),0))}</strong></div><div class="stat"><small>JUMLAH PENARIKAN</small><strong>${rupiah(own.filter(x=>x.type==="penarikan").reduce((a,x)=>a+Number(x.amount),0))}</strong></div>`;
+  $("savingTitle").textContent="TABUNGAN SAYA";$("savingHeading").textContent=`Riwayat ${profile.display_name||profile.username}`;
+  $("savingTable").innerHTML=tableHTML(own);
+ }
+}
+async function refresh(){message("dashboardMessage","");try{await loadDashboard();}catch(e){message("dashboardMessage",e.message||"Gagal memuat data.");}}
+$("loginForm").addEventListener("submit",async e=>{
+ e.preventDefault();message("loginMessage","");
+ if(!supabase){message("loginMessage","Koneksi Supabase belum siap. Pastikan internet aktif dan pustaka Supabase berhasil dimuat, lalu muat ulang halaman.");return;}
+ const username=$("username").value.trim().toLowerCase();
+ const password=$("password").value;
+ if(!/^[a-z0-9._-]{3,30}$/.test(username)){message("loginMessage","Format username tidak valid.");return;}
+ $("loginButton").disabled=true;$("loginButton").textContent="MEMERIKSA AKUN...";
+ try{
+  // Terima dua alias username untuk akun BOS BESAR.
+  // Email harus cocok dengan akun Auth yang UID-nya terhubung ke profiles.id.
+  const loginEmail = ["superadmin","bosbesar"].includes(username) ? SUPER_ADMIN_EMAIL : username + "@aab.local";
+  const {data,error}=await supabase.auth.signInWithPassword({email:loginEmail,password});
+  if(error)throw error;currentUser=data.user;await refresh();showDashboard();
+ }catch(err){message("loginMessage",err.message==="Invalid login credentials"?"Username atau password salah.":err.message||"Login gagal.");}
+ finally{$("loginButton").disabled=false;$("loginButton").textContent="MASUK KE DASHBOARD ↗";}
+});
+$("logoutButton").addEventListener("click",async()=>{await supabase.auth.signOut();currentUser=null;currentProfile=null;showLogin();});
+$("orgForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!currentProfile||currentProfile.role!=="admin")return;
+ const row={type:$("orgType").value,amount:Number($("orgAmount").value),category:$("orgCategory").value.trim(),description:$("orgNote").value.trim(),transaction_date:$("orgDate").value,created_by:currentUser.id};
+ const {error}=await supabase.from("org_transactions").insert(row);
+ if(error){message("dashboardMessage",error.message);return;}e.target.reset();$("orgDate").value=today();message("dashboardMessage","Transaksi organisasi berhasil disimpan.",true);await refresh();
+});
+$("savingForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!currentProfile||currentProfile.role!=="admin")return;
+ const row={member_id:$("savingMember").value,type:$("savingType").value,amount:Number($("savingAmount").value),description:$("savingNote").value.trim(),transaction_date:$("savingDate").value,created_by:currentUser.id};
+ const {error}=await supabase.from("savings_transactions").insert(row);
+ if(error){message("dashboardMessage",error.message);return;}e.target.reset();$("savingDate").value=today();message("dashboardMessage","Catatan tabungan berhasil disimpan.",true);await refresh();
+});
+function initSupabase(){
+ if(!window.supabase || !window.supabase.createClient){
+  message("loginMessage","Pustaka koneksi Supabase belum berhasil dimuat. Periksa internet, lalu muat ulang halaman.");
+  return;
+ }
+ if(!SUPABASE_URL.startsWith("https://") || !(SUPABASE_ANON_KEY.startsWith("sb_publishable_") || SUPABASE_ANON_KEY.startsWith("eyJ"))){
+  message("loginMessage","Konfigurasi URL atau Publishable Key Supabase belum benar.");
+  return;
+ }
+ try{
+  supabase=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+  supabase.auth.getSession().then(async({data,error})=>{
+   if(error){message("loginMessage",error.message);return;}
+   if(data.session){currentUser=data.session.user;try{await refresh();showDashboard();}catch(e){message("loginMessage",e.message||"Gagal memuat profil.");}}
+  }).catch(e=>message("loginMessage",e.message||"Tidak dapat memeriksa sesi."));
+ }catch(e){message("loginMessage",e.message||"Gagal menginisialisasi Supabase.");}
+}
+if(window.supabase && window.supabase.createClient) initSupabase();
+else {
+ window.addEventListener("supabase-ready",initSupabase,{once:true});
+ window.addEventListener("supabase-load-failed",()=>message("loginMessage","Pustaka Supabase gagal dimuat dari CDN. Periksa koneksi internet atau coba jaringan lain."),{once:true});
+ window.addEventListener("load",()=>{if(!supabase&&!window.supabase)message("loginMessage","Sedang menunggu koneksi Supabase. Jika pesan ini tetap muncul, muat ulang halaman dan periksa koneksi internet.");},{once:true});
+}
+</script>
+</body></html>
